@@ -3,9 +3,11 @@
 import sys
 
 from colorama import init as color_init
-
-import emailprotectionslib.dmarc as dmarclib
-import emailprotectionslib.spf as spflib
+try: 
+    import emailprotectionslib.dmarc as dmarclib
+    import emailprotectionslib.spf as spflib
+except:
+    sys.exit('Need to replace "import Resolver" in /usr/local/lib/python3.10/dist-packages/emailprotectionslib/spf.py with "from emailprotectionslib.Resolver import resolver\nNeed to replace "import Resolver" in /usr/local/lib/python3.10/dist-packages/emailprotectionslib/dmarc.py with from emailprotectionslib.Resolver import resolver\nAlso, there are two lines in those that state Resolver.resolver.query() and need to be changed to resolver.query')
 import logging
 
 from libs.PrettyOutput import output_good, output_bad, \
